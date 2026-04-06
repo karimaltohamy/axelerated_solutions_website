@@ -1,7 +1,7 @@
 export default function Products() {
   return (
     <section className="py-24 px-6 md:px-12 lg:px-24 bg-white">
-      <div className="max-w-7xl mx-auto space-y-24">
+      <div className="container mx-auto space-y-24">
         <div className="text-center space-y-4">
           <span className="text-sm font-bold text-primary tracking-widest uppercase">محفظة المنتجات</span>
           <h2 className="text-4xl md:text-5xl font-black text-secondary">تقنياتنا الخاصة</h2>

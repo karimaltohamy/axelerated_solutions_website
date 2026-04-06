@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="bg-[#05142f] text-slate-300 pt-24 pb-12 w-full border-t border-white/5 font-['Cairo']">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
+      <div className="container mx-auto px-6 md:px-12 lg:px-24">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 mb-20">
           <div className="lg:col-span-5 space-y-8">
             <div className="text-3xl font-black text-white tracking-tight">الحلول المتسارعة</div>
