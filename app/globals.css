@@ -1,26 +1,162 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-on-secondary-fixed-variant: #2a457f;
+  --color-surface: #f7f9fb;
+  --color-tertiary: #8e4e04;
+  --color-surface-container-low: #f2f4f6;
+  --color-on-surface: #191c1e;
+  --color-primary-container: #57c5e0;
+  --color-on-tertiary-container: #6f3b00;
+  --color-on-secondary-container: #2f4984;
+  --color-on-primary-container: #004f5e;
+  --color-secondary-fixed: #d9e2ff;
+  --color-tertiary-fixed-dim: #ffb77b;
+  --color-on-primary-fixed: #001f26;
+  --color-surface-container-lowest: #ffffff;
+  --color-error: #ba1a1a;
+  --color-inverse-surface: #2d3133;
+  --color-surface-container-highest: #e0e3e5;
+  --color-surface-container: #eceef0;
+  --color-surface-tint: #00687a;
+  --color-surface-bright: #f7f9fb;
+  --color-on-tertiary: #ffffff;
+  --color-outline-variant: #bdc8cd;
+  --color-on-primary-fixed-variant: #004e5d;
+  --color-on-error: #ffffff;
+  --color-on-primary: #ffffff;
+  --color-primary: #00687a;
+  --color-secondary-fixed-dim: #b1c6ff;
+  --color-tertiary-fixed: #ffdcc2;
+  --color-on-tertiary-fixed: #2e1500;
+  --color-surface-variant: #e0e3e5;
+  --color-on-secondary: #ffffff;
+  --color-primary-fixed: #adecff;
+  --color-inverse-primary: #69d5f0;
+  --color-on-tertiary-fixed-variant: #6d3a00;
+  --color-on-secondary-fixed: #001946;
+  --color-surface-dim: #d8dadc;
+  --color-surface-container-high: #e6e8ea;
+  --color-tertiary-container: #f8a459;
+  --color-primary-fixed-dim: #69d5f0;
+  --color-secondary: #0d2d67;
+  --color-error-container: #ffdad6;
+  --color-secondary-container: #a1bafd;
+  --color-on-error-container: #93000a;
+  --color-on-surface-variant: #3e494c;
+  --color-inverse-on-surface: #eff1f3;
+  --color-on-background: #191c1e;
+  --color-background: #f7f9fb;
+  --color-outline: #6e797d;
+
+  --color-pure-black: #000000;
+  --color-pure-white: #ffffff;
+  --color-glass-dark: rgba(0, 0, 0, 0.08);
+  --color-glass-light: rgba(255, 255, 255, 0.16);
+
+  --font-family-body: var(--font-body), system-ui, sans-serif;
+
+  --radius-pill: 50px;
+  --radius-circle: 50%;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-default: 1rem;
+  --radius-lg: 2rem;
+  --radius-xl: 3rem;
+  --radius-full: 9999px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  font-family: var(--font-family-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-on-background);
+  min-height: 100dvh;
+}
+
+:focus-visible {
+  outline: 2px dashed var(--color-pure-black);
+  outline-offset: 2px;
+}
+
+::selection {
+  background-color: var(--color-pure-black);
+  color: var(--color-pure-white);
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.glass-nav {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.hero-gradient-text {
+  background: linear-gradient(135deg, #0d2d67 0%, #00687a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.vision-shadow {
+  box-shadow: 0 20px 40px rgba(13, 45, 103, 0.04);
+}
+
+.kinetic-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(87, 197, 224, 0.2);
+}
+
+.bento-card {
+  transition: all 0.3s ease;
+}
+
+.bento-card:hover {
+  transform: scale(1.02);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animated-gradient {
+  background: linear-gradient(135deg, #0d2d67 0%, #00687a 50%, #57c5e0 100%);
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
