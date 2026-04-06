@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Footer() {
@@ -6,7 +7,16 @@ export default function Footer() {
       <div className="container mx-auto px-6 md:px-12 lg:px-24">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 mb-20">
           <div className="lg:col-span-5 space-y-8">
-            <div className="text-3xl font-black text-white tracking-tight">الحلول المتسارعة</div>
+            <Link href="/" className="w-[200px] block">
+              <Image
+                src="https://axs.sa/img/axs-logo.svg"
+                alt="الحلول المتسارعة"
+                width={30}
+                height={80}
+                className="w-full h-auto object-contain"
+                priority
+              />
+            </Link>
             <p className="text-slate-400 text-sm leading-relaxed max-w-md">
               شركة رائدة في تقديم الحلول التقنية المتكاملة بالمملكة العربية السعودية. نحن نلتزم بتمكين المؤسسات عبر بنية تحتية رقمية آمنة ومستدامة تدعم رؤية 2030. مكتبنا يقع في الرياض، المملكة العربية السعودية.
             </p>
