@@ -1,9 +1,15 @@
-"use client"
+"use client";
+
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import AnimatedGradientBackground from "@/components/ui/animated-gradient-background";
 
 export default function Hero() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
   return (
-    <header className="relative min-h-screen w-full flex items-center overflow-hidden">
+    <header ref={ref} className="relative min-h-screen w-full flex items-center overflow-hidden">
       <AnimatedGradientBackground
         Breathing={true}
         startingGap={120}
@@ -25,7 +31,12 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-transparent to-white/60"></div>
 
       <div className="relative z-10 container mx-auto px-6 md:px-12 lg:px-24 w-full pt-40 md:pt-32 pb-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+        >
           <div className="space-y-8">
             <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-[#57C5E0]/10 text-[#0D2D67] text-sm font-bold tracking-wide border border-[#57C5E0]/20">
               الحلول المتسارعة | رؤية السعودية 2030
@@ -70,7 +81,7 @@ export default function Hero() {
             <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-primary-container/30 rounded-full blur-3xl animate-pulse"></div>
             <div className="absolute -top-10 -left-10 w-48 h-48 bg-secondary/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </header>
   );

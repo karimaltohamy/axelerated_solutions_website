@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 
 const projects = [
   {
@@ -30,6 +31,8 @@ const projects = [
 
 export default function Projects() {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const scroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
@@ -42,9 +45,14 @@ export default function Projects() {
   };
 
   return (
-    <section className="py-24 bg-surface px-6 md:px-12 lg:px-24">
+    <section ref={ref} className="py-24 bg-surface px-6 md:px-12 lg:px-24">
       <div className="container mx-auto">
-        <div className="relative mb-12 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="relative mb-12 text-center"
+        >
           <div className="flex justify-between items-center absolute top-1/2 -translate-y-1/2 w-full px-4 md:px-0 left-0">
             <button
               onClick={() => scroll("left")}
@@ -67,14 +75,17 @@ export default function Projects() {
               نستعرض معكم أبرز الإنجازات والحلول التقنية التي قدمناها لعملائنا في مختلف القطاعات بالمملكة.
             </p>
           </div>
-        </div>
+        </motion.div>
         <div
           ref={scrollRef}
           className="flex overflow-x-auto gap-6 no-scrollbar pb-8 snap-x snap-mandatory"
         >
           {projects.map((project, index) => (
-            <div
+            <motion.div
               key={index}
+              initial={{ opacity: 0, y: 60 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
+              transition={{ duration: 0.8, delay: 0.2 + index * 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="min-w-[300px] md:min-w-[400px] aspect-[4/5] relative rounded-[2.5rem] overflow-hidden snap-center group"
             >
               {project.image ? (
@@ -104,7 +115,7 @@ export default function Projects() {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
